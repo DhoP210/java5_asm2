@@ -1,5 +1,6 @@
-package com.example.demo.entities;
+package com.example.demo.entities.custom;
 
+import com.example.demo.entities.HoaDonChiTiet;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,22 +11,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Getter@Setter
-
-public class HoaDonChiTiet {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class HoaDonCTTime {
     private Integer idHoaDon;
     private Integer soLuong;
     private Double donGia;
     private int trangThai;
     private Integer id;
     private Integer idSpct;
-    private Timestamp thoiGian;
-
+    private String thoiGianString;
 
     @Basic
     @Column(name = "IdHoaDon", nullable = false)
@@ -90,24 +91,13 @@ public class HoaDonChiTiet {
     @Basic
     @Column(name = "ThoiGian", nullable = false)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss[.fffffffff]")
-    public Timestamp getThoiGian() {
-        return thoiGian;
+    public String getThoiGianString() {
+        return thoiGianString;
     }
 
-    public void setThoiGian(Timestamp thoiGian) {
-        this.thoiGian = thoiGian;
+    public void setThoiGianString(String thoiGianString) {
+        this.thoiGianString = thoiGianString;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HoaDonChiTiet that = (HoaDonChiTiet) o;
-        return trangThai == that.trangThai && Objects.equals(idHoaDon, that.idHoaDon) && Objects.equals(soLuong, that.soLuong) && Objects.equals(donGia, that.donGia) && Objects.equals(id, that.id) && Objects.equals(idSpct, that.idSpct) && Objects.equals(thoiGian, that.thoiGian);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, idHoaDon, idSpct, soLuong, donGia, thoiGian, trangThai);
-    }
 }

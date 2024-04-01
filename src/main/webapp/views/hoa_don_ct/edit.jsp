@@ -39,10 +39,12 @@
         <lable>Đơn giá</lable>
         <input type="text" name="donGia" value="${hc.donGia}">
     </div>
+
     <div>
-        <lable>Đơn giá</lable>
-        <input type="datetime-local" name="thoiGian" value="${hc.thoiGian}">
+        <lable>Thoi gian</lable>
+        <input type="datetime-local" name="thoiGianString" value="${hc.thoiGian}">
     </div>
+
     <div>
         <lable>Trạng thái</lable>
         <input type="radio" id="tt-hd" name="trangThai" value="1" ${ hc.trangThai == 1 ? "checked" : ""}>
@@ -51,7 +53,7 @@
         <lable id="tt-nhd">Ngừng hoạt động</lable>
     </div>
     <div>
-        <button>sửa</button>
+        <button type="submit"> sửa</button>
     </div>
 </form>
 </body>

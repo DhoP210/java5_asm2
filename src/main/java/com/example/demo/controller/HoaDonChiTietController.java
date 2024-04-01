@@ -7,10 +7,15 @@ import com.example.demo.repositories.HoaDonChiTietRepository;
 import com.example.demo.repositories.HoaDonRepository;
 import com.example.demo.repositories.SanPhamChiTietRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +32,13 @@ public class HoaDonChiTietController {
 
 
     @GetMapping("index")
-    public String index(Model model){
-        model.addAttribute("listHC",hdctRepo.findAll());
+    public String index(Model model,
+                        @RequestParam(value = "limit",defaultValue = "12") int limit,
+                        @RequestParam(value = "page",defaultValue = "0") int page
+                        ){
+        Pageable pageable = PageRequest.of(page,limit);
+        Page<HoaDonChiTiet> p = hdctRepo.findAll(pageable);
+        model.addAttribute("pageHC",p);
         return "hoa_don_ct/index";
     }
     @GetMapping("create")
@@ -38,7 +48,11 @@ public class HoaDonChiTietController {
         return "hoa_don_ct/create";
     }
     @PostMapping("store")
-    public String store(HoaDonChiTiet ct){
+    public String store(HoaDonChiTiet ct
+//                        ,@RequestParam("thoiGian") String thoiGian
+    ){
+//        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.parse(thoiGian.replace("T", " ")));
+//        ct.setThoiGian(timestamp);
         hdctRepo.save(ct);
         return "redirect:/hoa-don-ct/index";
     }

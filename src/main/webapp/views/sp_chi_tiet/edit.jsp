@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page pageEncoding="UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -12,19 +13,31 @@
 <form action="/sp-chi-tiet/update/${spct.id}" method="post">
     <div>
         <lable>Mã sản phẩm chi tiết</lable>
-        <input type="text" name="maSpct" value="${spct.maSpct}" disabled>
+        <input type="text" name="maSpct" value="${spct.maSpct}" >
     </div>
     <div>
         <lable>id kích thước</lable>
-        <input type="text" name="idKichThuoc" value="${spct.idKichThuoc}" >
+        <select name="idKichThuoc" >
+            <c:forEach items="${listKT}" var="kt" >
+                <option value="${kt.id}">${kt.ten}</option>
+            </c:forEach>
+        </select>
     </div>
     <div>
         <lable>id màu sắc</lable>
-        <input type="text" name="idMauSac" value="${spct.idMauSac}" >
+        <select name="idMauSac" >
+            <c:forEach items="${listMS}" var="ms" >
+                <option value="${ms.id}">${ms.ten}</option>
+            </c:forEach>
+        </select>
     </div>
     <div>
         <lable>id sản phẩm</lable>
-        <input type="text" name="idSanPham" value="${spct.idSanPham}" >
+        <select name="idSanPham" >
+            <c:forEach items="${listSP}" var="sp" >
+                <option value="${sp.id}">${sp.ten}</option>
+            </c:forEach>
+        </select>
     </div>
     <div>
         <lable>Số lượng</lable>

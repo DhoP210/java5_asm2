@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page pageEncoding="UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -11,22 +12,22 @@
 <body>
 <h2>Thêm hoa don ct</h2>
 <form action="/hoa-don-ct/store" method="post">
-<%--    <div>--%>
-<%--        <lable>Mã hóa đơn chi tiết</lable>--%>
-<%--        <input type="text" name="maHDCT">--%>
-<%--    </div>--%>
+    <div>
+        <lable>id hóa đơn chi tiết</lable>
+        <input type="text" name="id">
+    </div>
     <div>
         <lable>id hóa đơn</lable>
-        <select name="idHoaDon" >
-            <c:forEach items="${hd}" var="kt" >
+        <select name="idHoaDon">
+            <c:forEach items="${hd}" var="kt">
                 <option value="${kt.id}">${kt.id}</option>
             </c:forEach>
         </select>
     </div>
     <div>
         <lable>id sản phẩm chi tiết</lable>
-        <select name="idSpct" >
-            <c:forEach items="${sp}" var="kt" >
+        <select name="idSpct">
+            <c:forEach items="${sp}" var="kt">
                 <option value="${kt.id}">${kt.id}</option>
             </c:forEach>
         </select>
@@ -41,6 +42,11 @@
     </div>
 
     <div>
+        <lable>Thời gian</lable>
+        <input type="datetime-local" name="thoiGian" id="thoiGian">
+    </div>
+
+    <div>
         <lable>Trạng thái</lable>
         <input type="radio" id="tt-hd" name="trangThai" value="1">
         <lable id="tt-hd">Đang hoạt động</lable>
@@ -48,7 +54,7 @@
         <lable id="tt-nhd">Ngừng hoạt động</lable>
     </div>
     <div>
-    <button>thêm</button>
+        <button>thêm</button>
     </div>
 </form>
 </body>

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -87,6 +88,7 @@ public class HoaDonChiTiet {
 
     @Basic
     @Column(name = "ThoiGian", nullable = false)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     public Timestamp getThoiGian() {
         return thoiGian;
     }

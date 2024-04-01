@@ -11,25 +11,9 @@
 </head>
 <body>
 
-<%--<h3>Tìm kiếm</h3>--%>
-<%--<form action="/san-pham/search" method="get">--%>
-<%--    <input type="text" name="ma" placeholder="Tìm theo mã">--%>
-<%--    <input type="text" name="ten" placeholder="Tìm theo tên">--%>
-<%--    <button>tìm</button>--%>
-<%--</form>--%>
-<%--<form action="/san-pham/loc" method="get">--%>
-<%--    <h3>Lọc</h3>--%>
-<%--    <lable>Trạng thái</lable>--%>
-<%--    <select name="trangThai" >--%>
-<%--        <option value="1">Đang hoạt động</option>--%>
-<%--        <option value="0">Ngừng hoạt động</option>--%>
-<%--    </select>--%>
-<%--    <button>Lọc</button>--%>
-<%--</form>--%>
-<%--<br>--%>
 
 <a href="/san-pham/create">thêm mới</a>
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>Mã</th>
@@ -39,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${listSP}" var="sp">
+            <c:forEach items="${pageSP.content}" var="sp">
                 <tr>
                     <td>${sp.ma}</td>
                     <td>${sp.ten}</td>
@@ -50,5 +34,13 @@
             </c:forEach>
         </tbody>
     </table>
+
+<nav>
+    <ul>
+        <c:forEach begin="1" end="${pageSP.totalPages}" varStatus="pTrang">
+            <a href="/san-pham/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
+        </c:forEach>
+    </ul>
+</nav>
 </body>
 </html>

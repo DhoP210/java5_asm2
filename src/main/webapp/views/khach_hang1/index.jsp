@@ -14,7 +14,7 @@
 
 
 <a href="/khach-hang/create">thêm mới</a>
-<table>
+<table border="1">
     <thead>
     <tr>
         <th>Mã</th>
@@ -25,7 +25,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${listKH}" var="kh">
+    <c:forEach items="${pageKH.content}" var="kh">
         <tr>
             <td>${ kh.ma }</td>
             <td>${ kh.ten }</td>
@@ -41,5 +41,12 @@
     </c:forEach>
     </tbody>
 </table>
+<nav>
+    <ul>
+        <c:forEach begin="1" end="${pageKH.totalPages}" varStatus="pTrang">
+            <a href="/khach-hang/index?page=${pTrang.count-1}">${pTrang.count-1}</a><br>
+        </c:forEach>
+    </ul>
+</nav>
 </body>
 </html>

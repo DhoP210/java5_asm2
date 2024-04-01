@@ -30,7 +30,7 @@
 <%--<br>--%>
 
 <a href="/mau-sac/create">thêm mới</a>
-<table>
+<table border="1">
     <thead>
     <tr>
         <th>Mã</th>
@@ -60,11 +60,10 @@
 <nav>
     <ul>
         <li><a href="#">Previous</a></li>
-
         <c:forEach begin="1" end="${pageMS.totalPages}" varStatus="pTrang" >
 <%--            <c:if test="${ pTrang.count < 3 || pTrang.count > pageMS.totalPages - 3}">--%>
 <%--                <li>--%>
-<%--                    <a href="/mau-sac/index?page=${pTrang.count}">${pTrang.count}</a>--%>
+                    <a href="/mau-sac/index?page=${pTrang.count-1}">${pTrang.count-1}</a><br>
 <%--                </li>--%>
 <%--            </c:if>--%>
 <%--            <c:if test="${ pTrang.count == 3 }">--%>
@@ -72,9 +71,7 @@
 <%--                    <a href="#">...</a>--%>
 <%--                </li>--%>
 <%--            </c:if>--%>
-            <a href="/mau-sac/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
         </c:forEach>
-
         <li><a href="#">Next</a></li>
     </ul>
 </nav>

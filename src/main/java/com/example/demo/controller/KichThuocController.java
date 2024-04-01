@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.KichThuoc;
+import com.example.demo.entities.MauSac;
 import com.example.demo.repositories.KichThuocRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +18,25 @@ import java.util.List;
 @RequestMapping("kich-thuoc")
 public class KichThuocController {
 
-//    private List<KichThuoc> ds = new ArrayList<>();
-//    public KichThuocController(){
-//        this.ds.add(new KichThuoc("KT1","kích thước nhỏ",0));
-//        this.ds.add(new KichThuoc("KT2","kích thước to",1));
-//        this.ds.add(new KichThuoc("PH1","kích thước Vừa",1));
-//    }
-
     @Autowired
     KichThuocRepository ktRepo;
 
-
     @GetMapping("index")
-    public String index(Model model){
-        model.addAttribute("listKT",ktRepo.findAll());
+    public String index(Model model,
+                        @RequestParam(name = "limit", defaultValue = "5") int limit,
+                        @RequestParam(name = "page", defaultValue = "1") int page)
+    {
+        Pageable pageable = PageRequest.of(page, limit);
+        Page<KichThuoc> p = this.ktRepo.findAll(pageable);
+        model.addAttribute("pageKT", p);
+
         return "kich_thuoc/index";
     }
+//    @GetMapping("index")
+//    public String index(Model model){
+//        model.addAttribute("listKT",ktRepo.findAll());
+//        return "kich_thuoc/index";
+//    }
     @GetMapping("create")
     public String create(){
         return "kich_thuoc/create";

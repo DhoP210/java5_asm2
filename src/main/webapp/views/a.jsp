@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,5 +10,13 @@
 </head>
 <body>
 <h1>Hello world</h1>
+<a href="/mau-sac/index">màu sắc</a><br>
+<a href="/kich-thuoc/index">kích thước</a><br>
+<a href="/san-pham/index">sản phẩm</a><br>
+<a href="/khach-hang/index">khách hàng</a><br>
+<a href="/nhan-vien/index">nhân viên</a><br>
+<a href="/sp-chi-tiet/index">sp chi tiết</a><br>
+<a href="/hoa-don/index">hóa đơn </a><br>
+<a href="/hoa-don-ct/index">hóa đơn chi tiết</a>
 </body>
 </html>

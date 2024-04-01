@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page pageEncoding="UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -10,10 +11,10 @@
 </head>
 <body>
 <form action="/hoa-don/store" method="post">
-<%--    <div>--%>
-<%--        <lable>Mã hóa đơn</lable>--%>
-<%--        <input type="text" name="maHoaDon">--%>
-<%--    </div>--%>
+    <div>
+        <lable>id hóa đơn</lable>
+        <input type="text" name="id">
+    </div>
     <div>
         <lable>ID nhân viên</lable>
         <select name="idNv" >

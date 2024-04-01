@@ -11,6 +11,10 @@
 <body>
 <form action="/khach-hang/store" method="post">
     <div>
+        <lable>ID khách hàng</lable>
+        <input type="text" name="id">
+    </div>
+    <div>
         <lable>Mã khách hàng</lable>
         <input type="text" name="ma">
     </div>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page pageEncoding="UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -37,6 +38,10 @@
     <div>
         <lable>Đơn giá</lable>
         <input type="text" name="donGia" value="${hc.donGia}">
+    </div>
+    <div>
+        <lable>Đơn giá</lable>
+        <input type="datetime-local" name="thoiGian" value="${hc.thoiGian}">
     </div>
     <div>
         <lable>Trạng thái</lable>

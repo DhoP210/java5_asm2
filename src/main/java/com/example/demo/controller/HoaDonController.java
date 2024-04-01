@@ -5,6 +5,9 @@ import com.example.demo.repositories.HoaDonRepository;
 import com.example.demo.repositories.KhachHangRepository;
 import com.example.demo.repositories.NhanVienRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +30,12 @@ public class HoaDonController {
 
 
     @GetMapping("index")
-    public String index(Model model){
-        model.addAttribute("listHD",hdRepo.findAll());
+    public String index(Model model,
+                        @RequestParam(value = "limit",defaultValue = "8") int limit,
+                        @RequestParam(value = "page",defaultValue = "0") int page){
+        Pageable pageable = PageRequest.of(page,limit);
+        Page<HoaDon> p = hdRepo.findAll(pageable);
+        model.addAttribute("pageHD",p);
         return "hoa_don/index";
     }
     @GetMapping("create")

@@ -5,6 +5,9 @@ import com.example.demo.entities.MauSac;
 import com.example.demo.entities.NhanVien;
 import com.example.demo.repositories.NhanVienRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,19 +23,33 @@ public class NhanVienController {
     NhanVienRepository nvRepo;
 
     @GetMapping("index")
-    public String index(Model model){
-        model.addAttribute("listNV", nvRepo.findAll());
+    public String index(Model model,
+                        @RequestParam(value = "limit", defaultValue = "8") int limit,
+                        @RequestParam(value = "page", defaultValue = "0") int page
+                        ){
+        Pageable pageable = PageRequest.of(page,limit);
+        Page<NhanVien> p = nvRepo.findAll(pageable);
+        model.addAttribute("pageNV",p);
         return "nhan_vien/index";
     }
+
+
+//    @GetMapping("index")
+//    public String index(Model model){
+//        model.addAttribute("listNV", nvRepo.findAll());
+//        return "nhan_vien/index";
+//    }
     @GetMapping("create")
     public String create(){
         return "nhan_vien/create";
     }
+
     @PostMapping("store")
     public String store(NhanVien nv){
         this.nvRepo.save(nv);
         return "redirect:/nhan-vien/index";
     }
+
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") NhanVien nv ){
         nvRepo.delete(nv);

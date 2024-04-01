@@ -13,7 +13,7 @@
 
 <br>
 <a href="/hoa-don/create">Thêm mới</a>
-<table>
+<table border="1">
     <thead>
         <tr>
 <%--            <th>Mã hóa đơn</th>--%>
@@ -25,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${listHD}" var="hd">
+        <c:forEach items="${pageHD.content}" var="hd">
             <tr>
 <%--                <td>${hd.maHoaDon}</td>--%>
                 <td>${hd.idNv}</td>
@@ -38,5 +38,10 @@
         </c:forEach>
     </tbody>
 </table>
+<nav><ul>
+    <c:forEach begin="1" end="${pageHD.totalPages}" varStatus="pTrang">
+        <a href="/hoa-don/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
+    </c:forEach>
+</ul></nav>
 </body>
 </html>

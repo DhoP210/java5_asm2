@@ -14,7 +14,7 @@
 
 
 <a href="/sp-chi-tiet/create">thêm mới</a>
-    <table>
+    <table border="1">
         <thead>
         <tr>
             <th>Mã sản phẩm chi tiết</th>
@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-            <c:forEach items="${listSPCT}" var="spct">
+            <c:forEach items="${pageSPCT.content}" var="spct">
                 <tr>
                     <td>${ spct.maSpct }</td>
                     <td>${ spct.idKichThuoc }</td>
@@ -47,5 +47,13 @@
             </c:forEach>
         </tbody>
     </table>
+
+<nav>
+    <ul>
+        <c:forEach begin="1" end="${pageSPCT.totalPages}" varStatus="pTrang">
+            <a href="/sp-chi-tiet/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
+        </c:forEach>
+    </ul>
+</nav>
 </body>
 </html>

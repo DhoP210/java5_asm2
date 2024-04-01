@@ -12,9 +12,14 @@
 <h2>Thêm nhân viên</h2>
 <form action="/nhan-vien/store" method="post">
     <div>
+        <lable>ID</lable>
+        <input type="text" name="id">
+    </div>
+    <div>
         <lable>Mã</lable>
         <input type="text" name="ma">
     </div>
+
     <div>
         <lable>Tên</lable>
         <input type="text" name="ten">

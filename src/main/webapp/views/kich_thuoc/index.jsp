@@ -11,25 +11,9 @@
     <title>index</title>
 </head>
 <body>
-<%--    <h3>Tìm kiếm</h3>--%>
-<%--    <form action="/kich-thuoc/search" method="get">--%>
-<%--        <input type="text" name="ma" placeholder="Tìm theo mã">--%>
-<%--        <input type="text" name="ten" placeholder="Tìm theo tên">--%>
-<%--        <button>tìm</button>--%>
-<%--    </form>--%>
-<%--    <form action="/kich-thuoc/loc" method="get">--%>
-<%--        <h3>Lọc</h3>--%>
-<%--        <lable>Trạng thái</lable>--%>
-<%--        <select name="trangThai" >--%>
-<%--            <option value="1">Đang hoạt động</option>--%>
-<%--            <option value="0">Ngừng hoạt động</option>--%>
-<%--        </select>--%>
-<%--        <button>Lọc</button>--%>
-<%--    </form>--%>
-<%--    <br>--%>
+
     <a href="/kich-thuoc/create">thêm mới</a>
-<%--            <input type="text" name="ma" >--%>
-<%--            <button><a href="/kich-thuoc/search" methods="get">Tìm</a></button>--%>
+
     <h3>Danh sách kích thước</h3>
     <table border="1">
         <thead>
@@ -41,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-            <c:forEach items="${listKT}" var="kt">
+            <c:forEach items="${pageKT.content}" var="kt">
                 <tr>
                     <td>${ kt.ma }</td>
                     <td>${ kt.ten }</td>
@@ -56,5 +40,24 @@
             </c:forEach>
         </tbody>
     </table>
+
+    <nav>
+        <ul>
+            <li><a href="#">Previous</a></li>
+            <c:forEach begin="1" end="${pageKT.totalPages}" varStatus="pTrang" >
+<%--                <c:if test="${ pTrang.count < 3 || pTrang.count > pageKT.totalPages - 3}">--%>
+<%--                    <li>--%>
+                        <a href="/kich-thuoc/index?page=${pTrang.count-1}">${pTrang.count-1}</a><br>
+<%--                    </li>--%>
+<%--                </c:if>--%>
+<%--                <c:if test="${ pTrang.count == 2 }">--%>
+<%--                    <li>--%>
+<%--                        <a href="#">...</a>--%>
+<%--                    </li>--%>
+<%--                </c:if>--%>
+            </c:forEach>
+            <li><a href="#">Next</a></li>
+        </ul>
+    </nav>
 </body>
 </html>

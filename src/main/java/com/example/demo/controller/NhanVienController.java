@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("nhan-vien")
@@ -25,10 +26,16 @@ public class NhanVienController {
     @GetMapping("index")
     public String index(Model model,
                         @RequestParam(value = "limit", defaultValue = "8") int limit,
-                        @RequestParam(value = "page", defaultValue = "0") int page
+                        @RequestParam(value = "page", defaultValue = "0") int page,
+                        @RequestParam("keyword") Optional<String> keywordOpt
                         ){
         Pageable pageable = PageRequest.of(page,limit);
-        Page<NhanVien> p = nvRepo.findAll(pageable);
+        Page<NhanVien> p ;
+        if (keywordOpt.isPresent()) {
+            p = nvRepo.findByKeyword(keywordOpt.get(), pageable);
+        } else {
+            p = nvRepo.findAll(pageable);
+        }
         model.addAttribute("pageNV",p);
         return "nhan_vien/index";
     }

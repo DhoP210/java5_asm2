@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.SanPhamChiTiet;
+import com.example.demo.entities.custom.ThongTinSanPhamChiTiet;
 import com.example.demo.repositories.KichThuocRepository;
 import com.example.demo.repositories.MauSacRepository;
 import com.example.demo.repositories.SanPhamChiTietRepository;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("sp-chi-tiet")
@@ -28,17 +30,34 @@ public class SPChiTietController {
     @Autowired
     KichThuocRepository ktRepo;
 
-
     @GetMapping("index")
     public String index(Model model,
                         @RequestParam(value = "limit", defaultValue = "20") int limit,
-                        @RequestParam(value = "page", defaultValue = "0") int page
-                        ){
-        Pageable pageable = PageRequest.of(page,limit);
-        Page<SanPhamChiTiet> p = spctRepo.findAll(pageable);
-        model.addAttribute("pageSPCT",p);
+                        @RequestParam(value = "page", defaultValue = "0") int page,
+                        @RequestParam("keyword") Optional<String> keywordOpt) {
+        Pageable pageable = PageRequest.of(page, limit);
+        Page<ThongTinSanPhamChiTiet> p;
+        if (keywordOpt.isPresent()) {
+            String keyword = "%" + keywordOpt.get() + "%";
+            p = spctRepo.findByKeyword(keyword, keyword, keyword, pageable);
+        } else {
+            p = spctRepo.loadAll(pageable);
+        }
+        model.addAttribute("pageSPCT", p);
         return "sp_chi_tiet/index";
     }
+
+
+//    @GetMapping("index")
+//    public String index(Model model,
+//                        @RequestParam(value = "limit", defaultValue = "20") int limit,
+//                        @RequestParam(value = "page", defaultValue = "0") int page
+//                        ){
+//        Pageable pageable = PageRequest.of(page,limit);
+//        Page<SanPhamChiTiet> p = spctRepo.findAll(pageable);
+//        model.addAttribute("pageSPCT",p);
+//        return "sp_chi_tiet/index";
+//    }
 
     @GetMapping("create")
     public String create(Model model){

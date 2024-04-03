@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("khach-hang")
@@ -23,10 +24,16 @@ public class KhachHangController {
     @GetMapping("index")
     public String index (Model model,
                          @RequestParam(value = "limit", defaultValue = "8") int limit,
-                         @RequestParam(value = "page", defaultValue = "0") int page
+                         @RequestParam(value = "page", defaultValue = "0") int page,
+                         @RequestParam("keyword") Optional<String> keywordOpt
                          ){
         Pageable pageable = PageRequest.of(page,limit);
-        Page<KhachHang> p = khRepo.findAll(pageable);
+        Page<KhachHang> p ;
+        if (keywordOpt.isPresent()) {
+            p = khRepo.findByKeyword(keywordOpt.get(), pageable);
+        } else {
+            p = khRepo.findAll(pageable);
+        }
         model.addAttribute("pageKH",p);
         return "khach_hang1/index";
     }

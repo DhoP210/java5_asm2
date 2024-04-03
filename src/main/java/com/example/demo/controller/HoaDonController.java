@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.HoaDon;
+import com.example.demo.entities.custom.ThongTinHoaDon;
 import com.example.demo.repositories.HoaDonRepository;
 import com.example.demo.repositories.KhachHangRepository;
 import com.example.demo.repositories.NhanVienRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -28,16 +30,33 @@ public class HoaDonController {
     @Autowired
     KhachHangRepository khRepo;
 
-
     @GetMapping("index")
     public String index(Model model,
-                        @RequestParam(value = "limit",defaultValue = "8") int limit,
-                        @RequestParam(value = "page",defaultValue = "0") int page){
-        Pageable pageable = PageRequest.of(page,limit);
-        Page<HoaDon> p = hdRepo.findAll(pageable);
-        model.addAttribute("pageHD",p);
+                        @RequestParam(value = "limit", defaultValue = "8") int limit,
+                        @RequestParam(value = "page", defaultValue = "0") int page,
+                        @RequestParam("keyword") Optional<String> keywordOpt) {
+        Pageable pageable = PageRequest.of(page, limit);
+        Page<ThongTinHoaDon> p;
+        if (keywordOpt.isPresent()) {
+            String s = "%" + keywordOpt.get() + "%";
+            p = hdRepo.findByKeyword(s, s, pageable);
+        } else {
+            p = hdRepo.loadAll(pageable);
+        }
+        model.addAttribute("pageHD", p);
         return "hoa_don/index";
     }
+
+
+//    @GetMapping("index")
+//    public String index(Model model,
+//                        @RequestParam(value = "limit",defaultValue = "8") int limit,
+//                        @RequestParam(value = "page",defaultValue = "0") int page){
+//        Pageable pageable = PageRequest.of(page,limit);
+//        Page<HoaDon> p = hdRepo.findAll(pageable);
+//        model.addAttribute("pageHD",p);
+//        return "hoa_don/index";
+//    }
     @GetMapping("create")
     public String create(Model model){
         model.addAttribute("listNV",nvRepo.findAll());

@@ -13,12 +13,23 @@
 
 <br>
 <a href="/hoa-don/create">Thêm mới</a>
+<br>
+<form method="GET" action="/hoa-don/index">
+    <div>
+        <label>Tìm theo tên</label>
+        <input type="text" name="keyword" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
 <table border="1">
     <thead>
         <tr>
-<%--            <th>Mã hóa đơn</th>--%>
-            <th>ID nhân viên</th>
-            <th>ID khách hàng</th>
+            <th>ID hóa đơn</th>
+            <th>Tên nhân viên</th>
+            <th>Tên khách hàng</th>
             <th>Ngày mua hàng</th>
             <th>Trạng thái</th>
             <th colspan="2">Thao tác</th>
@@ -27,10 +38,10 @@
     <tbody>
         <c:forEach items="${pageHD.content}" var="hd">
             <tr>
-<%--                <td>${hd.maHoaDon}</td>--%>
-                <td>${hd.idNv}</td>
-                <td>${hd.idKh}</td>
-                <td>${hd.ngayMuaHang}</td>
+                <td>${hd.id}</td>
+                <td>${hd.tenKH}</td>
+                <td>${hd.tenNV}</td>
+                <td>${hd.ngayMua}</td>
                 <td>${hd.trangThai}</td>
                 <td><a href="/hoa-don/edit/${hd.id}">update</a></td>
                 <td><a href="/hoa-don/delete/${hd.id}">delete</a></td>
@@ -39,8 +50,8 @@
     </tbody>
 </table>
 <nav><ul>
-    <c:forEach begin="1" end="${pageHD.totalPages}" varStatus="pTrang">
-        <a href="/hoa-don/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
+    <c:forEach begin="0" end="${pageHD.totalPages-1}" var="page">
+        <a href="/hoa-don/index?page=${page}&keyword=${param.keyword}">${page+1}</a>
     </c:forEach>
 </ul></nav>
 </body>

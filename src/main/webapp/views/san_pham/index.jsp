@@ -13,9 +13,21 @@
 
 
 <a href="/san-pham/create">thêm mới</a>
+<br>
+<form method="GET" action="/san-pham/index">
+    <div>
+        <label>Tìm theo tên</label>
+        <input type="text" name="keyword" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
     <table border="1">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Mã</th>
                 <th>Tên</th>
                 <th>Trạng thái</th>
@@ -25,6 +37,7 @@
         <tbody>
             <c:forEach items="${pageSP.content}" var="sp">
                 <tr>
+                    <td>${sp.id}</td>
                     <td>${sp.ma}</td>
                     <td>${sp.ten}</td>
                     <td>${sp.trangThai}</td>
@@ -37,8 +50,8 @@
 
 <nav>
     <ul>
-        <c:forEach begin="1" end="${pageSP.totalPages}" varStatus="pTrang">
-            <a href="/san-pham/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
+        <c:forEach begin="0" end="${pageSP.totalPages-1}" var="page">
+            <a href="/san-pham/index?page=${page}&keyword=${param.keyword}">${page+1}</a>
         </c:forEach>
     </ul>
 </nav>

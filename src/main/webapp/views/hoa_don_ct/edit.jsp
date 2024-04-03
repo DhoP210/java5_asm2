@@ -16,18 +16,18 @@
 <%--        <input type="text" name="maHDCT" value="${hc.maHDCT}" disabled>--%>
 <%--    </div>--%>
     <div>
-        <lable>id hóa đơn</lable>
+        <lable>id hóa đơn - ngày mua hàng</lable>
         <select name="idHoaDon" >
             <c:forEach items="${hd}" var="kt" >
-                <option value="${kt.id}">${kt.id}</option>
+                <option value="${kt.id}">${kt.id} - ${kt.ngayMuaHang}</option>
             </c:forEach>
         </select>
     </div>
     <div>
-        <lable>id sản phẩm chi tiết</lable>
+        <lable>ID - Mã sản phẩm chi tiết</lable>
         <select name="idSpct" >
             <c:forEach items="${sp}" var="kt" >
-                <option value="${kt.id}">${kt.id}</option>
+                <option value="${kt.id}">${kt.id} - ${kt.maSpct}</option>
             </c:forEach>
         </select>
     </div>

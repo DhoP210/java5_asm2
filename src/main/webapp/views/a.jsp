@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Hello world</h1>
+<h1>List index</h1>
 <a href="/mau-sac/index">màu sắc</a><br>
 <a href="/kich-thuoc/index">kích thước</a><br>
 <a href="/san-pham/index">sản phẩm</a><br>

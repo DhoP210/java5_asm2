@@ -32,9 +32,21 @@
 <%--<br>--%>
 
 <a href="/nhan-vien/create">thêm mới</a>
+<br>
+<form method="GET" action="/nhan-vien/index">
+    <div>
+        <label>Tìm theo tên</label>
+        <input type="text" name="keyword" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
     <table border="1">
         <thead>
         <tr>
+            <th>id</th>
             <th>Mã</th>
             <th>Tên</th>
             <th>Tên đăng nhập</th>
@@ -46,6 +58,7 @@
         <tbody>
             <c:forEach items="${pageNV.content}" var="nv">
                 <tr>
+                    <td>${ nv.id }</td>
                     <td>${ nv.ma }</td>
                     <td>${ nv.ten }</td>
                     <td>${ nv.tenDangNhap }</td>
@@ -63,8 +76,8 @@
     </table>
 <nav>
     <ul>
-        <c:forEach begin="1" end="${pageNV.totalPages}" varStatus="pTrang">
-            <a href="/nhan-vien/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
+        <c:forEach begin="0" end="${pageNV.totalPages-1}" var="page">
+            <a href="/nhan-vien/index?page=${page}&keyword=${param.keyword}">${page+1}</a>
         </c:forEach>
     </ul>
 </nav>

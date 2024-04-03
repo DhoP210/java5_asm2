@@ -14,9 +14,21 @@
 
 
 <a href="/khach-hang/create">thêm mới</a>
+<br>
+<form method="GET" action="/khach-hang/index">
+    <div>
+        <label>Tìm theo tên</label>
+        <input type="text" name="keyword" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
 <table border="1">
     <thead>
     <tr>
+        <th>ID</th>
         <th>Mã</th>
         <th>Tên</th>
         <th>Số điện thoại</th>
@@ -27,6 +39,7 @@
     <tbody>
     <c:forEach items="${pageKH.content}" var="kh">
         <tr>
+            <td>${ kh.id }</td>
             <td>${ kh.ma }</td>
             <td>${ kh.ten }</td>
             <td>${ kh.sdt }</td>
@@ -43,8 +56,8 @@
 </table>
 <nav>
     <ul>
-        <c:forEach begin="1" end="${pageKH.totalPages}" varStatus="pTrang">
-            <a href="/khach-hang/index?page=${pTrang.count-1}">${pTrang.count-1}</a><br>
+        <c:forEach begin="0" end="${pageKH.totalPages-1}" var="page">
+            <a href="/khach-hang/index?page=${page}&keyword=${param.keyword}">${page+1}</a>
         </c:forEach>
     </ul>
 </nav>

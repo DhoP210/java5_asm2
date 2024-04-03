@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("san-pham")
@@ -25,12 +26,17 @@ public class SanPhamController {
     @GetMapping("index")
     public String index(Model model,
                         @RequestParam(name = "limit", defaultValue = "6") int limit,
-                        @RequestParam(name = "page", defaultValue = "1") int page)
+                        @RequestParam(name = "page", defaultValue = "1") int page,
+                        @RequestParam("keyword") Optional<String> keywordOpt)
     {
         Pageable pageable = PageRequest.of(page, limit);
-        Page<SanPham> p = this.spRepo.findAll(pageable);
+        Page<SanPham> p ;
+        if (keywordOpt.isPresent()) {
+            p = spRepo.findByKeyword(keywordOpt.get(), pageable);
+        } else {
+            p = spRepo.findAll(pageable);
+        }
         model.addAttribute("pageSP", p);
-
         return "san_pham/index";
     }
 

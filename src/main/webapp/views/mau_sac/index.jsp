@@ -12,27 +12,22 @@
 </head>
 <body>
 
-<%--<h3>Tìm kiếm</h3>--%>
-<%--<form action="/mau-sac/search" method="get">--%>
-<%--    <input type="text" name="ma" placeholder="Tìm theo mã">--%>
-<%--    <input type="text" name="ten" placeholder="Tìm theo tên">--%>
-<%--    <button>tìm</button>--%>
-<%--</form>--%>
-<%--<form action="/mau-sac/loc" method="get">--%>
-<%--    <h3>Lọc</h3>--%>
-<%--    <lable>Trạng thái</lable>--%>
-<%--    <select name="trangThai" >--%>
-<%--        <option value="1">Đang hoạt động</option>--%>
-<%--        <option value="0">Ngừng hoạt động</option>--%>
-<%--    </select>--%>
-<%--    <button>Lọc</button>--%>
-<%--</form>--%>
-<%--<br>--%>
-
 <a href="/mau-sac/create">thêm mới</a>
+<br>
+<form method="GET" action="/mau-sac/index">
+    <div>
+        <label>Tìm theo tên</label>
+        <input type="text" name="keyword" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
 <table border="1">
     <thead>
     <tr>
+        <th>ID</th>
         <th>Mã</th>
         <th>Tên</th>
         <th>Trạng thái</th>
@@ -42,7 +37,7 @@
     <tbody>
     <c:forEach items="${ pageMS.content }" var="ms">
         <tr>
-<%--            <td>${ms.id}</td>--%>
+            <td>${ ms.id }</td>
             <td>${ ms.ma }</td>
             <td>${ ms.ten }</td>
             <td>${ ms.trangThai }</td>
@@ -59,20 +54,9 @@
 
 <nav>
     <ul>
-        <li><a href="#">Previous</a></li>
-        <c:forEach begin="1" end="${pageMS.totalPages}" varStatus="pTrang" >
-<%--            <c:if test="${ pTrang.count < 3 || pTrang.count > pageMS.totalPages - 3}">--%>
-<%--                <li>--%>
-                    <a href="/mau-sac/index?page=${pTrang.count-1}">${pTrang.count-1}</a><br>
-<%--                </li>--%>
-<%--            </c:if>--%>
-<%--            <c:if test="${ pTrang.count == 3 }">--%>
-<%--                <li>--%>
-<%--                    <a href="#">...</a>--%>
-<%--                </li>--%>
-<%--            </c:if>--%>
+        <c:forEach begin="0" end="${pageMS.totalPages-1}" var="page" >
+                    <a href="/mau-sac/index?page=${page}&keyword=${param.keyword}">${page+1}</a>
         </c:forEach>
-        <li><a href="#">Next</a></li>
     </ul>
 </nav>
 

@@ -16,7 +16,7 @@
         <input type="text" name="maSpct" value="${spct.maSpct}" >
     </div>
     <div>
-        <lable>id kích thước</lable>
+        <lable>Tên kích thước</lable>
         <select name="idKichThuoc" >
             <c:forEach items="${listKT}" var="kt" >
                 <option value="${kt.id}">${kt.ten}</option>
@@ -24,7 +24,7 @@
         </select>
     </div>
     <div>
-        <lable>id màu sắc</lable>
+        <lable>Tên màu sắc</lable>
         <select name="idMauSac" >
             <c:forEach items="${listMS}" var="ms" >
                 <option value="${ms.id}">${ms.ten}</option>
@@ -32,7 +32,7 @@
         </select>
     </div>
     <div>
-        <lable>id sản phẩm</lable>
+        <lable>Tên sản phẩm</lable>
         <select name="idSanPham" >
             <c:forEach items="${listSP}" var="sp" >
                 <option value="${sp.id}">${sp.ten}</option>

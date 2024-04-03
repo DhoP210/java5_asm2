@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("kich-thuoc")
@@ -24,12 +25,17 @@ public class KichThuocController {
     @GetMapping("index")
     public String index(Model model,
                         @RequestParam(name = "limit", defaultValue = "5") int limit,
-                        @RequestParam(name = "page", defaultValue = "1") int page)
+                        @RequestParam(name = "page", defaultValue = "1") int page,
+                        @RequestParam("keyword") Optional<String> keywordOpt)
     {
         Pageable pageable = PageRequest.of(page, limit);
-        Page<KichThuoc> p = this.ktRepo.findAll(pageable);
+        Page<KichThuoc> p ;
+        if (keywordOpt.isPresent()) {
+            p = ktRepo.findByKeyword(keywordOpt.get(), pageable);
+        } else {
+            p = ktRepo.findAll(pageable);
+        }
         model.addAttribute("pageKT", p);
-
         return "kich_thuoc/index";
     }
 //    @GetMapping("index")

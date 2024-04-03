@@ -13,11 +13,21 @@
 <body>
 
     <a href="/kich-thuoc/create">thêm mới</a>
-
-    <h3>Danh sách kích thước</h3>
+    <br>
+    <form method="GET" action="/kich-thuoc/index">
+        <div>
+            <label>Tìm theo tên</label>
+            <input type="text" name="keyword" />
+        </div>
+        <div>
+            <button>Tìm kiếm</button>
+        </div>
+    </form>
+    <br>
     <table border="1">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Mã</th>
             <th>Tên</th>
             <th>Trạng thái</th>
@@ -27,6 +37,7 @@
         <tbody>
             <c:forEach items="${pageKT.content}" var="kt">
                 <tr>
+                    <td>${ kt.id }</td>
                     <td>${ kt.ma }</td>
                     <td>${ kt.ten }</td>
                     <td>${ kt.trangThai }</td>
@@ -43,20 +54,9 @@
 
     <nav>
         <ul>
-            <li><a href="#">Previous</a></li>
-            <c:forEach begin="1" end="${pageKT.totalPages}" varStatus="pTrang" >
-<%--                <c:if test="${ pTrang.count < 3 || pTrang.count > pageKT.totalPages - 3}">--%>
-<%--                    <li>--%>
-                        <a href="/kich-thuoc/index?page=${pTrang.count-1}">${pTrang.count-1}</a><br>
-<%--                    </li>--%>
-<%--                </c:if>--%>
-<%--                <c:if test="${ pTrang.count == 2 }">--%>
-<%--                    <li>--%>
-<%--                        <a href="#">...</a>--%>
-<%--                    </li>--%>
-<%--                </c:if>--%>
+            <c:forEach begin="0" end="${pageKT.totalPages-1}" var="page" >
+                        <a href="/kich-thuoc/index?page=${page}&keyword=${param.keyword}">${page+1}</a>
             </c:forEach>
-            <li><a href="#">Next</a></li>
         </ul>
     </nav>
 </body>

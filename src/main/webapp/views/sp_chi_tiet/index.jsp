@@ -14,13 +14,25 @@
 
 
 <a href="/sp-chi-tiet/create">thêm mới</a>
+<br>
+<form method="GET" action="/sp-chi-tiet/index">
+    <div>
+        <label>Tìm theo tên</label>
+        <input type="text" name="keyword" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
     <table border="1">
         <thead>
         <tr>
+            <th>ID SPCT</th>
             <th>Mã sản phẩm chi tiết</th>
-            <th>id kích thước</th>
-            <th>id màu sắc</th>
-            <th>id sản phẩm</th>
+            <th>Tên kích thước</th>
+            <th>Tên màu sắc</th>
+            <th>Tên sản phẩm</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>
             <th>Trạng thái</th>
@@ -30,10 +42,11 @@
         <tbody>
             <c:forEach items="${pageSPCT.content}" var="spct">
                 <tr>
+                    <td>${ spct.id }</td>
                     <td>${ spct.maSpct }</td>
-                    <td>${ spct.idKichThuoc }</td>
-                    <td>${ spct.idMauSac }</td>
-                    <td>${ spct.idSanPham }</td>
+                    <td>${ spct.tenKT }</td>
+                    <td>${ spct.tenMS }</td>
+                    <td>${ spct.tenSP }</td>
                     <td>${ spct.soLuong }</td>
                     <td>${ spct.donGia }</td>
                     <td>${ spct.trangThai }</td>
@@ -50,8 +63,8 @@
 
 <nav>
     <ul>
-        <c:forEach begin="1" end="${pageSPCT.totalPages}" varStatus="pTrang">
-            <a href="/sp-chi-tiet/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
+        <c:forEach begin="0" end="${pageSPCT.totalPages-1}" var="page">
+            <a href="/sp-chi-tiet/index?page=${page}&keyword=${param.keyword}">${page+1}</a>
         </c:forEach>
     </ul>
 </nav>

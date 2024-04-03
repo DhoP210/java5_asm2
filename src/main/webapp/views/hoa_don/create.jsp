@@ -16,7 +16,7 @@
         <input type="text" name="id">
     </div>
     <div>
-        <lable>ID nhân viên</lable>
+        <lable>Tên nhân viên</lable>
         <select name="idNv" >
             <c:forEach items="${listNV}" var="nv" >
                 <option value="${nv.id}">${nv.ten}</option>
@@ -24,7 +24,7 @@
         </select>
     </div>
     <div>
-        <lable>ID khách hàng</lable>
+        <lable>Tên khách hàng</lable>
         <select name="idKh" >
             <c:forEach items="${listKH}" var="kh" >
                 <option value="${kh.id}">${kh.ten}</option>

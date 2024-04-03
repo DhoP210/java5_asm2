@@ -14,12 +14,34 @@
 
 
 <a href="/hoa-don-ct/create">thêm mới</a>
+<br>
+<form method="GET" action="/hoa-don-ct/index">
+    <div>
+        <label>Tìm theo mã SPCT</label>
+        <input type="text" name="maSpct" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
+<br>
+<form method="GET" action="/hoa-don-ct/index">
+    <div>
+        <label>Tìm theo ngày</label>
+        <input type="date" name="ngayMuaHang" />
+    </div>
+    <div>
+        <button>Tìm kiếm</button>
+    </div>
+</form>
+<br>
     <table border="1">
         <thead>
         <tr>
-<%--            <th>Mã hóa đơn chi tiết</th>--%>
-            <th>id hóa đơn</th>
-            <th>id sản phẩm chi tiết</th>
+            <th>ID hóa đơn chi tiết</th>
+            <th>Ngày mua hàng</th>
+            <th>Mã sản phẩm chi tiết</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>
             <th>Thời gian</th>
@@ -30,9 +52,9 @@
         <tbody>
             <c:forEach items="${pageHC.content}" var="hc">
                 <tr>
-<%--                    <td>${ hc.maHDCT }</td>--%>
-                    <td>${ hc.idHoaDon }</td>
-                    <td>${ hc.idSpct }</td>
+                    <td>${ hc.id }</td>
+                    <td>${ hc.ngayMuaHang }</td>
+                    <td>${ hc.maSpct }</td>
                     <td>${ hc.soLuong }</td>
                     <td>${ hc.donGia }</td>
                     <td>${ hc.thoiGian }</td>
@@ -48,12 +70,58 @@
         </tbody>
     </table>
 
-    <nav>
-        <ul>
-            <c:forEach begin="1" end="${pageHC.totalPages}" varStatus="pTrang">
-                <a href="/hoa-don-ct/index?page=${pTrang.count-1}">${pTrang.count-1}</a>
-            </c:forEach>
-        </ul>
-    </nav>
+<%--    <nav>--%>
+<%--        <ul>--%>
+<%--            <c:forEach begin="0" end="${pageHC.totalPages-1}" var="page">--%>
+<%--                <a href="/hoa-don-ct/index?page=${page}&maSpct=${param.keyword}">${page+1}</a>--%>
+<%--            </c:forEach>--%>
+<%--        </ul>--%>
+<%--    </nav>--%>
+
+<c:choose>
+    <c:when test="${param.maSpct ne null}">
+        <nav>
+            <ul>
+                <c:forEach begin="0" end="${pageHC.totalPages-1}" var="page">
+                    <c:if test="${page eq pageHC.number}">
+                        <li>${page+1}</li>
+                    </c:if>
+                    <c:if test="${page ne pageHC.number}">
+                        <li><a href="/hoa-don-ct/index?page=${page}&maSpct=${param.maSpct}">${page+1}</a></li>
+                    </c:if>
+                </c:forEach>
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.ngayMuaHang ne null}">
+        <nav>
+            <ul>
+                <c:forEach begin="0" end="${pageHC.totalPages-1}" var="page">
+                    <c:if test="${page eq pageHC.number}">
+                        <li>${page+1}</li>
+                    </c:if>
+                    <c:if test="${page ne pageHC.number}">
+                        <li><a href="/hoa-don-ct/index?page=${page}&ngayMuaHang=${param.ngayMuaHang}">${page+1}</a></li>
+                    </c:if>
+                </c:forEach>
+            </ul>
+        </nav>
+    </c:when>
+    <c:otherwise>
+        <nav>
+            <ul>
+                <c:forEach begin="0" end="${pageHC.totalPages-1}" var="page">
+                    <c:if test="${page eq pageHC.number}">
+                        <li>${page+1}</li>
+                    </c:if>
+                    <c:if test="${page ne pageHC.number}">
+                        <li><a href="/hoa-don-ct/index?page=${page}">${page+1}</a></li>
+                    </c:if>
+                </c:forEach>
+            </ul>
+        </nav>
+    </c:otherwise>
+</c:choose>
+
 </body>
 </html>

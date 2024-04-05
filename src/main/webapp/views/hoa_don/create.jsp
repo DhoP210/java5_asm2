@@ -11,10 +11,10 @@
 </head>
 <body>
 <form action="/hoa-don/store" method="post">
-    <div>
-        <lable>id hóa đơn</lable>
-        <input type="text" name="id">
-    </div>
+<%--    <div>--%>
+<%--        <lable>id hóa đơn</lable>--%>
+<%--        <input type="text" name="id">--%>
+<%--    </div>--%>
     <div>
         <lable>Tên nhân viên</lable>
         <select name="idNv" >

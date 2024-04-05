@@ -11,7 +11,7 @@
     <title>index</title>
 </head>
 <body>
-
+<a href="/a">list index</a>
     <a href="/kich-thuoc/create">thêm mới</a>
     <br>
     <form method="GET" action="/kich-thuoc/index">

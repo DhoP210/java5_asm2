@@ -12,7 +12,7 @@
 </head>
 <body>
 
-
+<a href="/a">list index</a>
 <a href="/khach-hang/create">thêm mới</a>
 <br>
 <form method="GET" action="/khach-hang/index">

@@ -12,24 +12,7 @@
 </head>
 <body>
 
-<%--<h3>Tìm kiếm</h3>--%>
-<%--<form action="/nhan-vien/search" method="get">--%>
-<%--    <input type="text" name="ma" placeholder="Tìm theo mã">--%>
-<%--    <input type="text" name="ten" placeholder="Tìm theo tên">--%>
-<%--    <input type="text" name="tenDangNhap" placeholder="Tìm theo tenDangNhap">--%>
-<%--    <input type="text" name="matKhau" placeholder="Tìm theo matKhau">--%>
-<%--    <button>tìm</button>--%>
-<%--</form>--%>
-<%--<form action="/nhan-vien/loc" method="get">--%>
-<%--    <h3>Lọc</h3>--%>
-<%--    <lable>Trạng thái</lable>--%>
-<%--    <select name="trangThai" >--%>
-<%--        <option value="1">Đang hoạt động</option>--%>
-<%--        <option value="0">Ngừng hoạt động</option>--%>
-<%--    </select>--%>
-<%--    <button>Lọc</button>--%>
-<%--</form>--%>
-<%--<br>--%>
+<a href="/a">list index</a>
 
 <a href="/nhan-vien/create">thêm mới</a>
 <br>

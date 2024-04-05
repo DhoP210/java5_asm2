@@ -12,10 +12,10 @@
 <body>
 <h2>Thêm hoa don ct</h2>
 <form action="/hoa-don-ct/store" method="post">
-    <div>
-        <lable>id hóa đơn chi tiết</lable>
-        <input type="text" name="id">
-    </div>
+<%--    <div>--%>
+<%--        <lable>id hóa đơn chi tiết</lable>--%>
+<%--        <input type="text" name="id">--%>
+<%--    </div>--%>
     <div>
         <lable>id hóa đơn - ngày mua hàng</lable>
         <select name="idHoaDon">

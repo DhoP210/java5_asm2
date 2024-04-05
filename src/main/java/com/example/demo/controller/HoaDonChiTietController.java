@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,7 @@ public class HoaDonChiTietController {
                         @RequestParam(value = "page", defaultValue = "0") int page,
                         @RequestParam(value = "ngayMuaHang", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<Date> ngayMuaHang,
                         @RequestParam(value = "maSpct", required = false) String maSpct) {
-        Pageable pageable = PageRequest.of(page, limit);
+        Pageable pageable = PageRequest.of(page, limit, Sort.by("id"));
         Page<ThongTinHoaDonChiTiet> p;
 
         if (maSpct != null && !maSpct.isEmpty()) {

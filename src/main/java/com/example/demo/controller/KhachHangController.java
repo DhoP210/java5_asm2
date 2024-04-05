@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class KhachHangController {
                          @RequestParam(value = "page", defaultValue = "0") int page,
                          @RequestParam("keyword") Optional<String> keywordOpt
                          ){
-        Pageable pageable = PageRequest.of(page,limit);
+        Pageable pageable = PageRequest.of(page,limit, Sort.by("id"));
         Page<KhachHang> p ;
         if (keywordOpt.isPresent()) {
             p = khRepo.findByKeyword(keywordOpt.get(), pageable);

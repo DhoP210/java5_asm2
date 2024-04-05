@@ -10,7 +10,7 @@
     <title>index</title>
 </head>
 <body>
-
+<a href="/a">list index</a>
 <br>
 <a href="/hoa-don/create">Thêm mới</a>
 <br>

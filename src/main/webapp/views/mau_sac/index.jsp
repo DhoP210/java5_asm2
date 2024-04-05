@@ -11,7 +11,7 @@
     <title>view mau sac</title>
 </head>
 <body>
-
+<a href="/a">list index</a>
 <a href="/mau-sac/create">thêm mới</a>
 <br>
 <form method="GET" action="/mau-sac/index">

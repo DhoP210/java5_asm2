@@ -11,7 +11,7 @@
 </head>
 <body>
 
-
+<a href="/a">list index</a>
 <a href="/san-pham/create">thêm mới</a>
 <br>
 <form method="GET" action="/san-pham/index">
